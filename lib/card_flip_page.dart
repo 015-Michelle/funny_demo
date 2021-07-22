@@ -8,10 +8,11 @@ class CardFlipPage extends StatefulWidget {
 }
 
 class _CardFlipPageState extends State<CardFlipPage> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("welcome here"),
+    return Column(
+      children: [],
     );
   }
 }
