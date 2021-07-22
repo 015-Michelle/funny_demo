@@ -55,7 +55,7 @@ class DrawChessBoradPage extends CustomPainter {
     // // pathXY.moveTo(0, size.width / 2);
     // // pathXY.lineTo(size.height, size.width / 2);
     // canvas.drawPath(pathXY, paintXY);
-    Path pathXX = drawStar(7, 50, 30, 100);
+    Path pathXX = drawNStar(7, 50, 30, 100);
     canvas.drawPath(pathXX, paintXY);
   }
 
@@ -77,7 +77,7 @@ class DrawChessBoradPage extends CustomPainter {
   }
 
   //画五角星
-  Path drawStar(int num, double R, double r, int offsetPosition) {
+  Path drawNStar(int num, double R, double r, int offsetPosition) {
     double perDeg = 360 / num;
     Path pathXX = Path();
     pathXX.moveTo(cos(toDeg(90 - perDeg)) * R + offsetPosition,
