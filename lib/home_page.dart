@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:myproject/ball_run_view_page.dart';
 import 'package:myproject/draw_chessboard_page.dart';
 
 import 'animate_nstar.dart';
+import 'balls_run_page.dart';
 import 'home_indicator_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,6 +64,36 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: Text(
                   "n角星动画-动起来",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(8))),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallsRunPage()));
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                child: Text(
+                  "粒子运动",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(8))),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallRunPage()));
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                child: Text(
+                  "balls",
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 decoration: BoxDecoration(
