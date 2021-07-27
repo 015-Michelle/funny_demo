@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallsRunPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallRunPage()));
               },
               child: Container(
                 margin: const EdgeInsets.all(10),
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallRunPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallsRunPage()));
               },
               child: Container(
                 margin: const EdgeInsets.all(10),

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myproject/animate_nstar.dart';
 
-import 'ball_run_view_page.dart';
 import 'class_ball.dart';
 
 class BallsRunPage extends StatefulWidget {
@@ -13,13 +12,13 @@ class BallsRunPage extends StatefulWidget {
 
 class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderStateMixin {
   late AnimationController _controllerBall;
-  Rect canvasRect = Rect.fromLTRB(0, 0, 200, 200);
+  Rect canvasRect = Rect.fromLTRB(0, 0, 300, 300);
   List<Ball> ballList = [];
   late Ball bigBall;
   @override
   void initState() {
     super.initState();
-    bigBall = Ball(x: 0, y: 240, ballColor: randomRGB(), r: 100, aX: 0.05, aY: 0.1, vX: 3, vY: -3);
+    bigBall = Ball(x: 0, y: 0, ballColor: randomRGB(), r: 100, aX: 0, aY: 0.1, vX: 3, vY: -3);
     ballList.add(bigBall);
     print("balllist---->${ballList[0]}");
     _controllerBall =
@@ -27,43 +26,56 @@ class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderSt
     _controllerBall.addListener(() {
       setState(() {
         for (int i = 0; i < ballList.length; i++) {
-          var currentBall = ballList[i];
-          currentBall.x += currentBall.vX;
-          currentBall.y += currentBall.vY;
-          currentBall.vX += currentBall.aX;
-          currentBall.vY += currentBall.aY;
-          if (currentBall.y > canvasRect.bottom) {
-            var childBall = Ball().copyBall(currentBall);
-            // childBall.r = currentBall.r / 2;
-            // childBall.vX = -currentBall.vX;
-            // childBall.vY = -currentBall.vY;
-            // ballList.add(childBall);
-            // currentBall.r /= 2;
-            // currentBall.y = secondRect.bottom;
-            // currentBall.vY = -currentBall.vY;
-            // currentBall.ballColor = randomRGB();
+          var ball = ballList[i];
+          ball.x += ball.vX;
+          ball.y += ball.vY;
+          ball.vX += ball.aX;
+          ball.vY += ball.aY;
+          if (ball.r < 1) {
+            ballList.remove(ball);
           }
-          // if (currentBall.y < secondRect.top) {
-          //   currentBall.y = secondRect.bottom;
-          //   currentBall.vY = -currentBall.vY;
-          //   currentBall.ballColor = randomRGB();
-          // }
-          // if (currentBall.x < secondRect.right) {
-          //   currentBall.x = secondRect.right;
-          //   currentBall.vX = -currentBall.vX;
-          //   currentBall.ballColor = randomRGB();
-          // }
-          // if (currentBall.x > secondRect.left) {
-          //   var childBall = Ball().copyBall(currentBall);
-          //   childBall.r = currentBall.r / 2;
-          //   childBall.vX = -currentBall.vX;
-          //   childBall.vX = -currentBall.vX;
-          //   ballList.add(childBall);
-          //   currentBall.r /= 2;
-          //   currentBall.x = secondRect.left;
-          //   currentBall.vX = -currentBall.vX;
-          //   currentBall.ballColor = randomRGB();
-          // }
+          if (ball.y > canvasRect.bottom - ball.r) {
+            ball.y = canvasRect.bottom - ball.r;
+            ball.vY = -ball.vY;
+            ball.ballColor = randomRGB();
+            var newBall = Ball(
+                x: ball.x,
+                y: ball.y,
+                ballColor: randomRGB(),
+                aX: ball.aX,
+                aY: ball.aY,
+                vX: -ball.vX,
+                vY: ball.vY);
+            newBall.r = ball.r / 2;
+            ball.r /= 2;
+            ballList.add(newBall);
+          }
+          if (ball.y < canvasRect.top + ball.r) {
+            ball.y = canvasRect.top + ball.r;
+            ball.vY = -ball.vY;
+            ball.ballColor = randomRGB();
+          }
+          if (ball.x > canvasRect.right - ball.r) {
+            ball.x = canvasRect.right - ball.r;
+            ball.vX = -ball.vX;
+            ball.ballColor = randomRGB();
+            var newBall = Ball(
+                x: ball.x,
+                y: ball.y,
+                ballColor: randomRGB(),
+                aX: ball.aX,
+                aY: ball.aY,
+                vX: ball.vX,
+                vY: -ball.vY);
+            newBall.r = ball.r / 2;
+            ball.r /= 2;
+            ballList.add(newBall);
+          }
+          if (ball.x < canvasRect.left + ball.r) {
+            ball.x = canvasRect.left + ball.r;
+            ball.vX = -ball.vX;
+            ball.ballColor = randomRGB();
+          }
         }
       });
     });
@@ -84,7 +96,7 @@ class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderSt
         title: Text("balls"),
       ),
       body: CustomPaint(
-        painter: BallRunView(bigBall, canvasRect),
+        painter: DrawBalls(ballList, canvasRect),
       ),
     );
   }
@@ -94,4 +106,32 @@ class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderSt
     _controllerBall.dispose();
     super.dispose();
   }
+}
+
+class DrawBalls extends CustomPainter {
+  List<Ball> balls;
+  Rect canvasRect;
+  DrawBalls(
+    this.balls,
+    this.canvasRect,
+  );
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paintCanvas = Paint()
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 2
+      ..color = Colors.black26;
+    Paint paintBall = Paint()
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 1;
+    canvas.translate(5, 5); //canvas的位置偏移
+    canvas.drawRect(canvasRect, paintCanvas);
+    balls.forEach((ball) {
+      paintBall.color = ball.ballColor;
+      canvas.drawCircle(Offset(ball.x, ball.y), ball.r, paintBall);
+    });
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

@@ -99,7 +99,7 @@ class BallRunView extends CustomPainter {
       ..style = PaintingStyle.fill
       ..strokeWidth = 1
       ..color = ball.ballColor;
-    canvas.translate(20, 20); //canvas的位置偏移
+    canvas.translate(5, 5); //canvas的位置偏移
     canvas.drawRect(canvasRect,
         paintCanvas); //canvas.drawRect(Rect.fromLTWH(-100, -100, 200, 200), paintCanvas);
     // canvas.drawRect(Rect.fromLTRB(0, 0, 20, 40), paintCanvas);
