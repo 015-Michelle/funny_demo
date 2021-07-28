@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../digits.dart';
+
 typedef DrawFunction = void Function(Canvas canvas);
 
 class CustomPaintePage extends CustomPainter {
@@ -77,4 +79,18 @@ Color randomRGB() {
   int g = 30 + random.nextInt(200);
   int b = 30 + random.nextInt(200);
   return Color.fromARGB(255, r, g, b);
+}
+
+//数字时钟
+void NumClock(int num, Canvas canvas, double R, double r, int offsetPosition, Paint paint) {
+  if (num > 10) {
+    return;
+  }
+  for (int i = 0; i < digit[num].length; i++) {
+    for (int j = 0; j < digit[num][j].length; j++) {
+      if (digit[i][j] == 1) {
+        canvas.drawPath(drawNStar(num, R, r, offsetPosition), paint);
+      }
+    }
+  }
 }
