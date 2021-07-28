@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myproject/animate_nstar.dart';
 
 import 'class_ball.dart';
+import 'custom_painte_page.dart';
 
 class BallRunPage extends StatefulWidget {
   const BallRunPage({Key? key}) : super(key: key);
@@ -70,7 +71,13 @@ class _BallRunPageState extends State<BallRunPage> with SingleTickerProviderStat
         title: Text("粒子运动"),
       ),
       body: CustomPaint(
-        painter: BallRunView(ball, canvasRect),
+        painter: CustomPaintePage(canvasRect, (canvas) {
+          Paint paintBall = Paint()
+            ..style = PaintingStyle.fill
+            ..strokeWidth = 1
+            ..color = ball.ballColor;
+          canvas.drawCircle(Offset(ball.x, ball.y), ball.r, paintBall);
+        }),
       ),
     );
   }
@@ -80,32 +87,4 @@ class _BallRunPageState extends State<BallRunPage> with SingleTickerProviderStat
     _controllerBall.dispose();
     super.dispose();
   }
-}
-
-class BallRunView extends CustomPainter {
-  Ball ball;
-  Rect canvasRect;
-  BallRunView(
-    this.ball,
-    this.canvasRect,
-  );
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paintCanvas = Paint()
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 2
-      ..color = Colors.black26;
-    Paint paintBall = Paint()
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 1
-      ..color = ball.ballColor;
-    canvas.translate(5, 5); //canvas的位置偏移
-    canvas.drawRect(canvasRect,
-        paintCanvas); //canvas.drawRect(Rect.fromLTWH(-100, -100, 200, 200), paintCanvas);
-    // canvas.drawRect(Rect.fromLTRB(0, 0, 20, 40), paintCanvas);
-    canvas.drawCircle(Offset(ball.x, ball.y), ball.r, paintBall);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

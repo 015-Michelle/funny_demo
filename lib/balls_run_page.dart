@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myproject/animate_nstar.dart';
 
 import 'class_ball.dart';
+import 'custom_painte_page.dart';
 
 class BallsRunPage extends StatefulWidget {
   const BallsRunPage({Key? key}) : super(key: key);
@@ -96,7 +97,16 @@ class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderSt
         title: Text("balls"),
       ),
       body: CustomPaint(
-        painter: DrawBalls(ballList, canvasRect),
+        painter: CustomPaintePage(canvasRect, (canvas) {
+          ballList.forEach((ball) {
+            Paint paintBall = Paint()
+              ..style = PaintingStyle.fill
+              ..strokeWidth = 1
+              ..color = ball.ballColor;
+            paintBall.color = ball.ballColor;
+            canvas.drawCircle(Offset(ball.x, ball.y), ball.r, paintBall);
+          });
+        }),
       ),
     );
   }
@@ -106,32 +116,4 @@ class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderSt
     _controllerBall.dispose();
     super.dispose();
   }
-}
-
-class DrawBalls extends CustomPainter {
-  List<Ball> balls;
-  Rect canvasRect;
-  DrawBalls(
-    this.balls,
-    this.canvasRect,
-  );
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paintCanvas = Paint()
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 2
-      ..color = Colors.black26;
-    Paint paintBall = Paint()
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 1;
-    canvas.translate(5, 5); //canvas的位置偏移
-    canvas.drawRect(canvasRect, paintCanvas);
-    balls.forEach((ball) {
-      paintBall.color = ball.ballColor;
-      canvas.drawCircle(Offset(ball.x, ball.y), ball.r, paintBall);
-    });
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
