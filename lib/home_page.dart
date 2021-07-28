@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myproject/widgets/ball_run_view_page.dart';
 import 'package:myproject/widgets/draw_chessboard_page.dart';
+import 'package:myproject/widgets/num_clock_page.dart';
 
 import 'widgets/animate_nstar.dart';
 import 'widgets/balls_run_page.dart';
@@ -102,7 +103,7 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BallsRunPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NumClockPage()));
               },
               child: Container(
                 margin: const EdgeInsets.all(10),

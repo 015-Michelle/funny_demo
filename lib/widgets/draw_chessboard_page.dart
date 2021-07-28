@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_painte_page.dart';
@@ -31,7 +32,7 @@ class _ChessBoardPageState extends State<ChessBoardPage> {
                 ..style = PaintingStyle.stroke
                 ..color = starColor
                 ..strokeWidth = 3;
-              Path pathXX = drawNStar(7, 50, 30, 100);
+              Path pathXX = drawNStar(7, 50, 30, Offset(100, 100));
               canvas.drawPath(pathXX, paintXY);
             },
           ),

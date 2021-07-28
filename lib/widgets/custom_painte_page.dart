@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -50,20 +51,20 @@ Path gridPath(int step, Size size) {
 }
 
 //画五角星
-Path drawNStar(int num, double R, double r, int offsetPosition) {
+Path drawNStar(int num, double R, double r, Offset offsetPosition) {
   double perDeg = 360 / num;
   Path pathXX = Path();
-  pathXX.moveTo(
-      cos(toDeg(90 - perDeg)) * R + offsetPosition, -sin(toDeg(90 - perDeg)) * R + offsetPosition);
+  pathXX.moveTo(cos(toDeg(90 - perDeg)) * R + offsetPosition.dx,
+      -sin(toDeg(90 - perDeg)) * R + offsetPosition.dy);
   for (int i = 0; i < num; i++) {
-    pathXX.lineTo(cos(toDeg((90 - perDeg) + i * perDeg)) * R + offsetPosition,
-        -sin(toDeg((90 - perDeg) + i * perDeg)) * R + offsetPosition);
+    pathXX.lineTo(cos(toDeg((90 - perDeg) + i * perDeg)) * R + offsetPosition.dx,
+        -sin(toDeg((90 - perDeg) + i * perDeg)) * R + offsetPosition.dy);
     if (num > 3)
-      pathXX.lineTo(cos(toDeg((90 - perDeg + perDeg / 2) + i * perDeg)) * r + offsetPosition,
-          -sin(toDeg((90 - perDeg + perDeg / 2) + i * perDeg)) * r + offsetPosition);
+      pathXX.lineTo(cos(toDeg((90 - perDeg + perDeg / 2) + i * perDeg)) * r + offsetPosition.dx,
+          -sin(toDeg((90 - perDeg + perDeg / 2) + i * perDeg)) * r + offsetPosition.dy);
   }
-  pathXX.lineTo(
-      cos(toDeg(90 - perDeg)) * R + offsetPosition, -sin(toDeg(90 - perDeg)) * R + offsetPosition);
+  pathXX.lineTo(cos(toDeg(90 - perDeg)) * R + offsetPosition.dx,
+      -sin(toDeg(90 - perDeg)) * R + offsetPosition.dy);
   return pathXX;
 }
 
@@ -82,14 +83,22 @@ Color randomRGB() {
 }
 
 //数字时钟
-void NumClock(int num, Canvas canvas, double R, double r, int offsetPosition, Paint paint) {
-  if (num > 10) {
-    return;
-  }
+void NumClock(int num, Canvas canvas, double R, double r, Offset offsetPosition, Paint paint) {
+  // if (num > 10) {
+  //   return;
+  // }
   for (int i = 0; i < digit[num].length; i++) {
+    //print(i);
     for (int j = 0; j < digit[num][j].length; j++) {
-      if (digit[i][j] == 1) {
-        canvas.drawPath(drawNStar(num, R, r, offsetPosition), paint);
+      //print("num---->${digit[num][i][j]}");
+      if (digit[num][i][j] == 1) {
+        print("*");
+        var _radius = R * 0.8;
+        canvas.save();
+        canvas.scale(0.3, 0.3);
+        canvas.translate(j * 2 * (_radius) + _radius, i * 2 * (_radius) + _radius);
+        canvas.drawPath(drawNStar(5, R, r, offsetPosition), paint);
+        canvas.restore();
       }
     }
   }

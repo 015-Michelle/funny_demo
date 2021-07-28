@@ -68,7 +68,7 @@ class _AnimateNStarState extends State<AnimateNStar> with SingleTickerProviderSt
               ..style = PaintingStyle.fill
               ..color = starColor
               ..strokeWidth = 3;
-            Path pathXX = drawNStar(num, _R, 30, 100);
+            Path pathXX = drawNStar(num, _R, 30, Offset(100, 100));
             canvas.drawPath(pathXX, paintXY);
           }),
         ),
