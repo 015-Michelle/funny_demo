@@ -21,10 +21,13 @@ class _BallsRunPageState extends State<BallsRunPage> with SingleTickerProviderSt
     bigBall = Ball(x: 0, y: 0, ballColor: randomRGB(), r: 100, aX: 0, aY: 0.1, vX: 3, vY: -3);
     ballList.add(bigBall);
     print("balllist---->${ballList[0]}");
-    _controllerBall =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 2000000));
+    _controllerBall = AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _controllerBall.addListener(() {
       setState(() {
+        if (ballList.length == 0) {
+          bigBall = Ball(x: 0, y: 0, ballColor: randomRGB(), r: 100, aX: 0, aY: 0.1, vX: 3, vY: -3);
+          ballList.add(bigBall);
+        }
         for (int i = 0; i < ballList.length; i++) {
           var ball = ballList[i];
           ball.x += ball.vX;
