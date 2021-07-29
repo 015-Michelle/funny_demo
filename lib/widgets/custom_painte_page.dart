@@ -92,7 +92,7 @@ void NumClock(int num, Canvas canvas, double R, double r, Offset offsetPosition,
     for (int j = 0; j < digit[num][j].length; j++) {
       //print("num---->${digit[num][i][j]}");
       if (digit[num][i][j] == 1) {
-        print("*");
+        // print("*");
         var _radius = R * 0.8;
         canvas.save();
         canvas.scale(0.3, 0.3);
