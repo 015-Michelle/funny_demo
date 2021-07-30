@@ -17,6 +17,9 @@ class _NumClockPageState extends State<NumClockPage> with SingleTickerProviderSt
       DateTime.now().second.toString();
   late AnimationController _controller;
   late Animation _animation;
+  late Path path;
+  String _preSecond = DateTime.now().second.toString();
+  bool isChange = true;
 
   @override
   void initState() {
@@ -26,11 +29,14 @@ class _NumClockPageState extends State<NumClockPage> with SingleTickerProviderSt
         IntTween(begin: 0, end: 9).animate(CurveTween(curve: Curves.easeInOut).animate(_controller))
           ..addListener(() {
             setState(() {
-              num = DateTime.now().hour.toString() +
-                  ":" +
-                  DateTime.now().minute.toString() +
-                  ":" +
-                  DateTime.now().second.toString();
+              if (_preSecond != DateTime.now().second.toString()) {
+                num = DateTime.now().hour.toString() +
+                    ":" +
+                    DateTime.now().minute.toString() +
+                    ":" +
+                    DateTime.now().second.toString();
+                isChange = false;
+              }
             });
           })
           ..addStatusListener((status) {
@@ -65,8 +71,11 @@ class _NumClockPageState extends State<NumClockPage> with SingleTickerProviderSt
           int length = nums.length;
           canvas.translate(MediaQuery.of(context).size.width / length / 2, 0);
           for (int i = 0; i < length; i++) {
+            path = i < 6
+                ? drawNStar(5, 10, 5, Offset(MediaQuery.of(context).size.width / length * i, 0))
+                : drawNStar(5, 10, 10, Offset(MediaQuery.of(context).size.width / length * i, 0));
             NumClock(nums[i], canvas, 10, 5,
-                Offset(MediaQuery.of(context).size.width / length * i, 0), paint);
+                Offset(MediaQuery.of(context).size.width / length * i, 0), paint, path);
             canvas.translate(MediaQuery.of(context).size.width / length / 2, 0);
           }
         }),

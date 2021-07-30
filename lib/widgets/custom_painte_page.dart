@@ -83,7 +83,8 @@ Color randomRGB() {
 }
 
 //数字时钟
-void NumClock(int num, Canvas canvas, double R, double r, Offset offsetPosition, Paint paint) {
+void NumClock(
+    int num, Canvas canvas, double R, double r, Offset offsetPosition, Paint paint, Path path) {
   // if (num > 10) {
   //   return;
   // }
@@ -97,7 +98,7 @@ void NumClock(int num, Canvas canvas, double R, double r, Offset offsetPosition,
         canvas.save();
         canvas.scale(0.3, 0.3);
         canvas.translate(j * 2 * (_radius) + _radius, i * 2 * (_radius) + _radius);
-        canvas.drawPath(drawNStar(5, R, r, offsetPosition), paint);
+        canvas.drawPath(path, paint);
         canvas.restore();
       }
     }
