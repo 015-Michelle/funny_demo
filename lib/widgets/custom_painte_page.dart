@@ -83,11 +83,12 @@ Color randomRGB() {
 }
 
 //数字时钟
-void NumClock(
+List<Offset> NumClock(
     int num, Canvas canvas, double R, double r, Offset offsetPosition, Paint paint, Path path) {
   // if (num > 10) {
   //   return;
   // }
+  List<Offset> opsitions = [];
   for (int i = 0; i < digit[num].length; i++) {
     //print(i);
     for (int j = 0; j < digit[num][j].length; j++) {
@@ -99,8 +100,14 @@ void NumClock(
         canvas.scale(0.3, 0.3);
         canvas.translate(j * 2 * (_radius) + _radius, i * 2 * (_radius) + _radius);
         canvas.drawPath(path, paint);
+        debugPrint("x--->${j * 2 * (_radius) + _radius}   y--->${i * 2 * (_radius) + _radius}");
+        j % 2 == 0
+            ? opsitions.add(Offset(j * 2 * (_radius) + _radius, i * 2 * (_radius) + _radius))
+            : null;
+        debugPrint("opsition=========>$opsitions");
         canvas.restore();
       }
     }
   }
+  return opsitions;
 }
