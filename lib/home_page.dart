@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 import 'package:myproject/widgets/ball_run_view_page.dart';
 import 'package:myproject/widgets/draw_chessboard_page.dart';
+import 'package:myproject/widgets/hero_test.dart';
 import 'package:myproject/widgets/marquee_page.dart';
 import 'package:myproject/widgets/num_clock_page.dart';
 
@@ -67,6 +68,7 @@ class _HomePageState extends State<HomePage> {
             itemGuide('文字轮播                            ', MarqueePage()),
             itemGuide('画一个很好看的框', BorderWithWave()),
             itemGuide('三级地址选择器', AddressPickerPage()),
+            itemGuide('hero动画', HeroTest()),
           ],
         ),
       ),
@@ -87,23 +89,24 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-        child: Marquee(
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          scrollAxis: Axis.horizontal,
-          blankSpace: 20.0,
-          velocity: 100.0,
-          pauseAfterRound: Duration(seconds: 2),
-          startPadding: 10.0,
-          accelerationDuration: Duration(seconds: 1),
-          accelerationCurve: Curves.linear,
-          decelerationDuration: Duration(milliseconds: 500),
-          decelerationCurve: Curves.easeOut,
-          text: text,
-          showFadingOnlyWhenScrolling: true,
-          fadingEdgeStartFraction: 0.1,
-          fadingEdgeEndFraction: 0.1,
-          numberOfRounds: 3,
-        ),
+        // child: Marquee(
+        //   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        //   scrollAxis: Axis.horizontal,
+        //   blankSpace: 20.0,
+        //   velocity: 100.0,
+        //   pauseAfterRound: Duration(seconds: 2),
+        //   startPadding: 10.0,
+        //   accelerationDuration: Duration(seconds: 1),
+        //   accelerationCurve: Curves.linear,
+        //   decelerationDuration: Duration(milliseconds: 500),
+        //   decelerationCurve: Curves.easeOut,
+        //   text: text,
+        //   showFadingOnlyWhenScrolling: true,
+        //   fadingEdgeStartFraction: 0.1,
+        //   fadingEdgeEndFraction: 0.1,
+        //   numberOfRounds: 3,
+        // ),
+        child: Text(text),
         decoration:
             BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(8))),
       ),

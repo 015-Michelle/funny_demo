@@ -63,7 +63,7 @@ class _AddressPickerPageState extends State<AddressPickerPage> {
               },
               child: Text("展示city picker"),
             ),
-            Text(result.toString() ?? ""),
+            Text(result.toString() ),
           ],
         ),
       ),
