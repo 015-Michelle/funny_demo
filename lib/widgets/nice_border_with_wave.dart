@@ -20,15 +20,18 @@ class _BorderWithWaveState extends State<BorderWithWave> {
     //     painter: DrawBorder(),
     //   ),
     // );
-    return DottedBorder(
-      child: Container(
-        height: 220,
-        width: 120,
-        color: Colors.green,
+    return Scaffold(
+      body: Center(
+        child: DottedBorder(
+          child: Container(
+            height: MediaQuery.of(context).size.height - 60,
+            width: MediaQuery.of(context).size.width - 30,
+          ),
+          dashPattern: [8, 4],
+          strokeWidth: 2,
+          customPath: (size) => borderPath(size),
+        ),
       ),
-      dashPattern: [8, 4],
-      strokeWidth: 2,
-      customPath: (size) => borderPath(size),
     );
   }
 }
@@ -38,7 +41,7 @@ class DrawBorder extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Paint dottedPaint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2
+      ..strokeWidth = 1
       ..color = Colors.blue;
     Path path = borderPath(size);
     canvas.drawPath(path, dottedPaint);
