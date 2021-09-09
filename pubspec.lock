@@ -57,6 +57,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  deck:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: "v1.4.7"
+      resolved-ref: "721ddce9348cbc5e942f6092a422ee35f145d33d"
+      url: "https://flutter-plugin-pub:UZvzokbQ2Pitsyne2zat@git.ratel.cafe/library/flutter/deck.git"
+    source: git
+    version: "1.4.7"
   dotted_border:
     dependency: "direct main"
     description:
@@ -95,6 +104,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   lpinyin:
     dependency: transitive
     description:
