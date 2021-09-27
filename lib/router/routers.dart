@@ -3,4 +3,5 @@ class Routes {
   static String home = 'home';
   static String hero_test = 'hero_test';
   static String hero_page = 'hero_page';
+  static String fab_page = 'fab_page';
 }

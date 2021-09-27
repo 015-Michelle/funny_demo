@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myproject/router/my_router.dart';
+import 'package:myproject/router/routers.dart';
 
 class TextLearn extends StatefulWidget {
   const TextLearn({Key? key}) : super(key: key);
@@ -28,7 +30,14 @@ class _TextLearnState extends State<TextLearn> {
               decorationStyle: TextDecorationStyle.double,
               decoration: TextDecoration.underline,
             ),
-          )
+          ),
+          FloatingActionButton(
+            onPressed: () => MyRouter.to(context, Routes.fab_page),
+            tooltip: 'floatingActionButton',
+            foregroundColor: Colors.green,
+            backgroundColor: Colors.deepOrange,
+            heroTag: 'floating',
+          ),
         ],
       ),
     );

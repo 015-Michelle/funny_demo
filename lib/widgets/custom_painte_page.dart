@@ -2,8 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import '../digits.dart';
+import 'package:myproject/data/digits.dart';
 
 typedef DrawFunction = void Function(Canvas canvas);
 

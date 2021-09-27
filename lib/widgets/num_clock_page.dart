@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:myproject/class_ball.dart';
+import 'package:myproject/module/class_ball.dart';
 
 import 'custom_painte_page.dart';
 

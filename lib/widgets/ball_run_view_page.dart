@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../class_ball.dart';
+import '../module/class_ball.dart';
 import 'custom_painte_page.dart';
 
 class BallRunPage extends StatefulWidget {

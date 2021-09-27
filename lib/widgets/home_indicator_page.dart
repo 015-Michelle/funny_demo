@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myproject/card_data.dart';
+import 'package:myproject/data/card_data.dart';
 
 class HomeIndicatorPage extends StatefulWidget {
   const HomeIndicatorPage({Key? key}) : super(key: key);
