@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myproject/router/my_router.dart';
-
-import 'home_page.dart';
+import 'package:myproject/sliver.dart';
 
 void main() => (runApp(MyApp()));
 
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
-      home: HomePage(),
+      home: SliverAppBarDemo(),
     );
   }
 }

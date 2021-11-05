@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:myproject/first_page.dart';
 import 'package:myproject/router/my_router.dart';
 import 'package:myproject/router/routers.dart';
 import 'package:myproject/widgets/ball_run_view_page.dart';
 import 'package:myproject/widgets/basics/text_learn.dart';
 import 'package:myproject/widgets/draw_chessboard_page.dart';
+import 'package:myproject/widgets/extra_option_edit_list.dart';
 import 'package:myproject/widgets/list/reorder_list_page.dart';
 import 'package:myproject/widgets/marquee_page.dart';
 import 'package:myproject/widgets/num_clock_page.dart';
+import 'package:myproject/widgets/todo_list.dart';
 
 import 'widgets/address_picker_page.dart';
 import 'widgets/animate_nstar.dart';
@@ -68,6 +71,9 @@ class _HomePageState extends State<HomePage> {
               itemGuide('deck插件', DeckPage()),
               itemGuide('基础源码', TextLearn()),
               itemGuide('可排序的列表', ReOrderListPage()),
+              itemGuide('可排序的列表', ExtraOptionsEditList()),
+              itemGuide('Widget测试-todolist', TodoList()),
+              itemGuide('Sliver', FirstPage()),
             ],
           ),
         ),
