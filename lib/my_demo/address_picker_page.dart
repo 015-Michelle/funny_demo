@@ -1,7 +1,7 @@
 import 'package:city_pickers/city_pickers.dart';
 import 'package:flutter/material.dart';
 import 'package:myproject/data/province_nm.dart';
-import 'package:myproject/widgets/picker.dart';
+import 'package:myproject/my_demo/picker.dart';
 
 class AddressPickerPage extends StatefulWidget {
   const AddressPickerPage({Key? key}) : super(key: key);
@@ -63,7 +63,7 @@ class _AddressPickerPageState extends State<AddressPickerPage> {
               },
               child: Text("展示city picker"),
             ),
-            Text(result.toString() ),
+            Text(result.toString()),
           ],
         ),
       ),

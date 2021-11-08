@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:myproject/my_demo/input_scroll_page.dart';
 import 'package:myproject/router/my_router.dart';
 import 'package:myproject/router/routers.dart';
-import 'package:myproject/widgets/ball_run_view_page.dart';
-import 'package:myproject/widgets/basics/text_learn.dart';
-import 'package:myproject/widgets/draw_chessboard_page.dart';
-import 'package:myproject/widgets/extra_option_edit_list.dart';
-import 'package:myproject/widgets/list/reorder_list_page.dart';
-import 'package:myproject/widgets/marquee_page.dart';
-import 'package:myproject/widgets/num_clock_page.dart';
-import 'package:myproject/widgets/todo_list.dart';
 
-import 'widgets/address_picker_page.dart';
-import 'widgets/animate_nstar.dart';
-import 'widgets/balls_run_page.dart';
-import 'widgets/deck_page.dart';
-import 'widgets/home_indicator_page.dart';
-import 'widgets/nice_border_with_wave.dart';
+import 'my_demo/address_picker_page.dart';
+import 'my_demo/animate_nstar.dart';
+import 'my_demo/ball_run_view_page.dart';
+import 'my_demo/balls_run_page.dart';
+import 'my_demo/basics/text_learn.dart';
+import 'my_demo/deck_page.dart';
+import 'my_demo/draw_chessboard_page.dart';
+import 'my_demo/extra_option_edit_list.dart';
+import 'my_demo/home_indicator_page.dart';
+import 'my_demo/list/reorder_list_page.dart';
+import 'my_demo/marquee_page.dart';
+import 'my_demo/nice_border_with_wave.dart';
+import 'my_demo/num_clock_page.dart';
+import 'my_demo/todo_list.dart';
 
 class MyDemoPage extends StatefulWidget {
   const MyDemoPage({Key? key}) : super(key: key);
@@ -76,6 +77,7 @@ class _MyDemoPageState extends State<MyDemoPage> {
           itemGuide('可排序的列表', ReOrderListPage()),
           itemGuide('可排序的列表', ExtraOptionsEditList()),
           itemGuide('Widget测试-todolist', TodoList()),
+          itemGuide('输入框置顶', InputScrollPage()),
         ],
       ),
     );

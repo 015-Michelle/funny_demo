@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myproject/widgets/my_widget.dart';
+import 'package:myproject/my_demo/my_widget.dart';
 
 void main() {
   Widget mountApp() {

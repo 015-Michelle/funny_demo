@@ -30,6 +30,13 @@ class _ExamplesDemoPageState extends State<ExamplesDemoPage> {
               Routes.sliverExample,
             ),
           ),
+          _buildContentItem(
+            title: '滚动示例',
+            onTap: () => MyRouter.to(
+              context,
+              Routes.customScrollView,
+            ),
+          ),
         ],
       ),
     );
