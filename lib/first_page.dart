@@ -2,11 +2,21 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:myproject/first_page_controller.dart';
+import 'package:myproject/my_demo_page.dart';
+import 'package:myproject/test_demo_page.dart';
+
+import 'examples_demo_page.dart';
 
 class FirstPage extends StatelessWidget {
   FirstPage({Key? key}) : super(key: key);
 
-  ScrollController scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
+  final FirstPageController firstPageController = Get.put(FirstPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +28,8 @@ class FirstPage extends StatelessWidget {
         slivers: [
           _buildSliverAppBar(),
           _buildSliverPersistentHeader(),
-          _buildSliverList(),
+          _buildSliverToBoxAdapter(),
+          //_buildSliverList(),
           //_buildSliverGrid(),
         ],
       ),
@@ -52,43 +63,107 @@ class FirstPage extends StatelessWidget {
   }
 
   Widget _buildSliverPersistentHeader() {
-    bool isSelected = false;
-    return SliverPersistentHeader(
-      pinned: true,
-      delegate: HeaderDelegate(
-        minHeight: 100,
-        maxHeight: 100,
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          padding: const EdgeInsets.all(10),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.blue,
-          ),
-          child: Column(
-            children: [
-              Text('SliverPersistentHeader停在顶部'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ChoiceChip(
-                    label: Text('到顶部'),
-                    selected: isSelected,
-                    onSelected: (bool isSelected) {
-                      //scrollController.jumpTo();
-                      isSelected = !isSelected;
-                    },
-                  ),
-                  SizedBox(width: 6),
-                  ChoiceChip(label: Text('到中间'), selected: isSelected),
-                  SizedBox(width: 6),
-                  ChoiceChip(label: Text('到底部'), selected: isSelected),
-                ],
-              ),
-            ],
+    return GetBuilder<FirstPageController>(
+      builder: (_) => SliverPersistentHeader(
+        pinned: true,
+        delegate: HeaderDelegate(
+          minHeight: 100,
+          maxHeight: 100,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            padding: const EdgeInsets.all(10),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.blue,
+                boxShadow: [BoxShadow(color: Colors.black12)]),
+            child: Column(
+              children: [
+                Text('SliverPersistentHeader可以停在顶部的'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FilterChip(
+                      selectedColor: Colors.orange.withAlpha(55),
+                      selectedShadowColor: Colors.blue,
+                      shadowColor: Colors.orangeAccent,
+                      pressElevation: 5,
+                      elevation: 3,
+                      avatar: CircleAvatar(child: Text('A')),
+                      label: Text(firstPageController.getHomeData()[0]),
+                      selected: firstPageController.compareIndex(0),
+                      onSelected: (bool value) {
+                        scrollController.animateTo(scrollController.position.minScrollExtent,
+                            duration: Duration(milliseconds: 400), curve: Curves.ease);
+                        firstPageController.changeSelectedIndex(0);
+                      },
+                    ),
+                    SizedBox(width: 6),
+                    FilterChip(
+                      selectedColor: Colors.orange.withAlpha(55),
+                      selectedShadowColor: Colors.blue,
+                      shadowColor: Colors.orangeAccent,
+                      pressElevation: 5,
+                      elevation: 3,
+                      avatar: CircleAvatar(child: Text('B')),
+                      label: Text(firstPageController.getHomeData()[1]),
+                      selected: firstPageController.compareIndex(1),
+                      onSelected: (bool value) {
+                        scrollController.animateTo(scrollController.position.maxScrollExtent / 2,
+                            duration: Duration(milliseconds: 400), curve: Curves.ease);
+                        firstPageController.changeSelectedIndex(1);
+                      },
+                    ),
+                    SizedBox(width: 6),
+                    FilterChip(
+                      selectedColor: Colors.orange.withAlpha(55),
+                      selectedShadowColor: Colors.blue,
+                      shadowColor: Colors.orangeAccent,
+                      pressElevation: 5,
+                      elevation: 3,
+                      avatar: CircleAvatar(child: Text('C')),
+                      label: Text(firstPageController.getHomeData()[2]),
+                      selected: firstPageController.compareIndex(2),
+                      onSelected: (bool value) {
+                        scrollController.animateTo(scrollController.position.maxScrollExtent,
+                            duration: Duration(milliseconds: 500), curve: Curves.ease);
+                        firstPageController.changeSelectedIndex(2);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  /// 可以容纳一个普通组件，并将其转化成Sliver家族组件的适配器
+  Widget _buildSliverToBoxAdapter() {
+    return SliverToBoxAdapter(
+      child: Column(
+        children: [
+          buildContentItem(
+            title: firstPageController.getHomeData()[0],
+            onTap: () => Get.to(
+              () => MyDemoPage(),
+            ),
+          ),
+          buildContentItem(
+            title: firstPageController.getHomeData()[1],
+            onTap: () => Get.to(
+              () => ExamplesDemoPage(),
+            ),
+          ),
+          buildContentItem(
+            title: firstPageController.getHomeData()[2],
+            onTap: () => Get.to(
+              () => TestDemoPage(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -97,28 +172,33 @@ class FirstPage extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          return GestureDetector(
-            child: Container(
-              key: GlobalKey(debugLabel: '$index'),
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.blue.withOpacity(0.5)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                '$index',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-              ),
-            ),
-          );
+          return buildContentItem(title: firstPageController.getHomeData()[index]);
         },
-        childCount: 20,
+        childCount: firstPageController.getHomeData().length,
+      ),
+    );
+  }
+
+  Widget buildContentItem({required String title, Function()? onTap}) {
+    return GestureDetector(
+      onTap: onTap ?? () {},
+      child: Container(
+        height: 200,
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          gradient: LinearGradient(
+            colors: [Colors.blue, Colors.blue.withOpacity(0.5)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          title,
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+        ),
       ),
     );
   }
