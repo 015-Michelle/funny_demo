@@ -18,4 +18,5 @@ class Routes {
   static String reorderList = 'reorder_list';
   static String extraOptionEditList = 'extra_option_edit_list';
   static String todoList = 'todo_list';
+  static String sliverExample = 'sliver_example';
 }
