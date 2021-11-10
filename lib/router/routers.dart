@@ -20,4 +20,5 @@ class Routes {
   static String todoList = 'todo_list';
   static String sliverExample = 'sliver_example';
   static String customScrollView = 'custom_scroll_view';
+  static String scrollablePage = 'scrollable_page';
 }

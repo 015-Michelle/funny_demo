@@ -5,6 +5,7 @@ import 'package:myproject/my_demo/hero/hero_page.dart';
 import 'package:myproject/my_demo/hero/hero_test.dart';
 import 'package:myproject/my_demo_page.dart';
 import 'package:myproject/others/ui/custom_scroll_view_demo.dart';
+import 'package:myproject/others/ui/scrollable_page.dart';
 import 'package:myproject/others/ui/sliver.dart';
 import 'package:myproject/router/routers.dart';
 
@@ -18,4 +19,5 @@ Map<String, Handler> routeHandlers = {
   }),
   Routes.sliverExample: Handler(handlerFunc: (dynamic _, dynamic __) => SliverAppBarDemo()),
   Routes.customScrollView: Handler(handlerFunc: (dynamic _, dynamic __) => CustomScrollViewDemo()),
+  Routes.scrollablePage: Handler(handlerFunc: (dynamic _, dynamic __) => ScrollableDemo()),
 };

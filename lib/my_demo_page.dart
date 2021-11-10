@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myproject/my_demo/input_scroll_page.dart';
+import 'package:myproject/my_demo/pictures/image_cropping_page.dart';
 import 'package:myproject/router/my_router.dart';
 import 'package:myproject/router/routers.dart';
 
@@ -78,6 +79,7 @@ class _MyDemoPageState extends State<MyDemoPage> {
           itemGuide('可排序的列表', ExtraOptionsEditList()),
           itemGuide('Widget测试-todolist', TodoList()),
           itemGuide('输入框置顶', InputScrollPage()),
+          itemGuide('图片裁剪', ImageCroppingPage()),
         ],
       ),
     );

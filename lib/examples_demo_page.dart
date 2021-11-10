@@ -37,6 +37,13 @@ class _ExamplesDemoPageState extends State<ExamplesDemoPage> {
               Routes.customScrollView,
             ),
           ),
+          _buildContentItem(
+            title: 'Scrollable',
+            onTap: () => MyRouter.to(
+              context,
+              Routes.scrollablePage,
+            ),
+          )
         ],
       ),
     );
