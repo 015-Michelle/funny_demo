@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myproject/common/ui/common_empty_widget.dart';
 
 class TestDemoPage extends StatefulWidget {
   const TestDemoPage({Key? key}) : super(key: key);
@@ -12,9 +13,7 @@ class _TestDemoPageState extends State<TestDemoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('做一个测试吧')),
-      body: Center(
-        child: Text('welcome!!现在还没有东西哦'),
-      ),
+      body: CommonEmptyWidget(),
     );
   }
 }
