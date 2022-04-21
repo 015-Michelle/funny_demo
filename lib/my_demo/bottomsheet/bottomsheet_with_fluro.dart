@@ -9,7 +9,7 @@ class BottomsheetWithFluro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("title"),
+        title: Text("bottomSheet inner-局部页面跳转"),
       ),
       body: Center(
         child: Column(
@@ -19,25 +19,26 @@ class BottomsheetWithFluro extends StatelessWidget {
               onTap: () {
                 showModalBottomSheet(
                   context: context,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   builder: (context) {
-                    return Container(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("this is a bottomSheet"),
-                          Container(
-                            height: 350,
-                            child: Navigator(
-                              initialRoute: '/',
-                              onGenerateRoute: (RouteSettings settings) {
-                                WidgetBuilder builder = (context) => BPageA();
-                                return MaterialPageRoute(builder: builder, settings: settings);
-                              },
-                            ),
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("this is a bottomSheet"),
+                        ),
+                        Container(
+                          height: 350,
+                          child: Navigator(
+                            initialRoute: '/',
+                            onGenerateRoute: (RouteSettings settings) {
+                              WidgetBuilder builder = (context) => BPageA();
+                              return MaterialPageRoute(builder: builder, settings: settings);
+                            },
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     );
                   },
                 );
