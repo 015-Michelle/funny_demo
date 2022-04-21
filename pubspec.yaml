@@ -29,10 +29,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  deck:
-    git:
-      url: https://flutter-plugin-pub:UZvzokbQ2Pitsyne2zat@git.ratel.cafe/library/flutter/deck.git
-      ref: v1.4.7
+#  deck:
+#    git:
+#      url: https://flutter-plugin-pub:UZvzokbQ2Pitsyne2zat@git.ratel.cafe/library/flutter/deck.git
+#      ref: v1.4.7
 
 
 flutter:
