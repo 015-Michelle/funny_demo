@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myproject/my_demo/bottomsheet/bottomsheet_with_fluro.dart';
 import 'package:myproject/my_demo/input_scroll_page.dart';
 import 'package:myproject/my_demo/pictures/image_cropping_page.dart';
 import 'package:myproject/router/my_router.dart';
@@ -9,7 +10,6 @@ import 'my_demo/animate_nstar.dart';
 import 'my_demo/ball_run_view_page.dart';
 import 'my_demo/balls_run_page.dart';
 import 'my_demo/basics/text_learn.dart';
-import 'my_demo/deck_page.dart';
 import 'my_demo/draw_chessboard_page.dart';
 import 'my_demo/extra_option_edit_list.dart';
 import 'my_demo/home_indicator_page.dart';
@@ -73,13 +73,14 @@ class _MyDemoPageState extends State<MyDemoPage> {
               ),
             ),
           ),
-          itemGuide('deck插件', DeckPage()),
+          //itemGuide('deck插件', DeckPage()),
           itemGuide('基础源码', TextLearn()),
           itemGuide('可排序的列表', ReOrderListPage()),
           itemGuide('可排序的列表', ExtraOptionsEditList()),
           itemGuide('Widget测试-todolist', TodoList()),
           itemGuide('输入框置顶', InputScrollPage()),
           itemGuide('图片裁剪', ImageCroppingPage()),
+          itemGuide("bottomsheet with fluro", BottomsheetWithFluro()),
         ],
       ),
     );
