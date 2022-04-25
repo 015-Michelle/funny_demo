@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myproject/my_demo/bottomsheet/bottomsheet_with_fluro.dart';
+import 'package:myproject/my_demo/draggable_grid_view/draggable_grid_view.dart';
 import 'package:myproject/my_demo/input_scroll_page.dart';
 import 'package:myproject/my_demo/pictures/image_cropping_page.dart';
 import 'package:myproject/router/my_router.dart';
@@ -81,6 +82,7 @@ class _MyDemoPageState extends State<MyDemoPage> {
           itemGuide('输入框置顶', InputScrollPage()),
           itemGuide('图片裁剪', ImageCroppingPage()),
           itemGuide("bottomsheet with fluro", BottomsheetWithFluro()),
+          itemGuide("draggable grid view", DraggableGridView()),
         ],
       ),
     );
